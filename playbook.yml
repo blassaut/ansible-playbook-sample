@@ -3,7 +3,7 @@
     tasks:
       - name: Install all required dependencies
         apt: 
-          name: ['python', 'python-setuptools', 'python-dev', 'build-essential', 'python-pip']
+          name: ['python3-apt', 'python', 'python-setuptools', 'python-dev', 'build-essential', 'python-pip']
           state: present
 
       - name: Install MySQL database
