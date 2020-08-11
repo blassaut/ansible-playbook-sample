@@ -1,5 +1,6 @@
   - name: Deploy a web application
     hosts: ansible_targets
+    become: true
     tasks:
       - name: Install all required dependencies
         yum: 
