@@ -2,12 +2,12 @@
     hosts: ansible_targets
     tasks:
       - name: Install all required dependencies
-        apt: 
-          name: ['python3', 'python-setuptools', 'python-dev', 'build-essential', 'python-pip']
+        yum: 
+          name: ['python', 'python-setuptools', 'python-dev', 'build-essential', 'python-pip']
           state: present
 
       - name: Install MySQL database
-        apt: 
+        yum: 
           name: ['mysql-server', 'mysql-client']
           state: present
 
