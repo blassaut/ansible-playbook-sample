@@ -9,7 +9,7 @@
 
       - name: Install MySQL database
         yum:
-          name: mysql
+          name: mysql-community-server
           state: present
 
       - name: Start MySQL service
