@@ -3,7 +3,7 @@
     tasks:
       - name: Install all required dependencies
         yum: 
-          name: ['python', 'python-setuptools', 'python-devel', 'build-essential', 'python-pip']
+          name: ['python', 'python-setuptools', 'python-devel', 'python-pip', 'make', 'gcc', 'gcc-c++']
           state: present
 
       - name: Install MySQL database
