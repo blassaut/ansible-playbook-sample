@@ -2,10 +2,48 @@
     hosts: ansible_targets
     tasks:
       - name: Install all required dependencies
-        apt: name={{ item }} state=installed
+        apt: 
+          name: '{{ item }}' 
+          state: installed
         with_items:
           - python
           - python-setuptools
           - python-dev
           - build-essential
           - python-pip
+
+      - name: Install MySQL database
+        apt: 
+          name: '{{ item }}'
+          state: installed
+        with_items:
+          with_items:
+            - mysql-server
+            - mysql-client
+
+      - name: Start MySQL service
+        service:
+          name: mysql
+          state: started
+          enabled: yes
+      
+      - name: Create database
+        mysql_db: 
+          name: employee_db 
+          state: present
+
+      - name: Create database users
+        mysql_user:
+          name: db_user
+          password: Passw0rd
+          priv: '*.*:ALL'
+          state: present
+
+      - name: Install Python Flask dependencies
+        pip:
+          name: '{{ item }}'
+          state: present
+          with_items:
+            - flask
+            - flask-mysql
+      
