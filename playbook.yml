@@ -3,23 +3,13 @@
     tasks:
       - name: Install all required dependencies
         apt: 
-          name: '{{ item }}' 
+          name: ['python', 'python-setuptools', 'python-dev', 'build-essential', 'python-pip']`
           state: present
-        with_items:
-          - python
-          - python-setuptools
-          - python-dev
-          - build-essential
-          - python-pip
 
       - name: Install MySQL database
         apt: 
-          name: '{{ item }}'
+          name: ['mysql-server', 'mysql-client']
           state: present
-        with_items:
-          with_items:
-            - mysql-server
-            - mysql-client
 
       - name: Start MySQL service
         service:
