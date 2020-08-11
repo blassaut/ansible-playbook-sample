@@ -2,7 +2,7 @@
     hosts: ansible_targets
     tasks:
       - name: Install all required dependencies
-        apt: name={{item}} state=installed
+        apt: name={{ item }} state=installed
         with_items:
           - python
           - python-setuptools
