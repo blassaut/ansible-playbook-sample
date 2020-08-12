@@ -1,0 +1,4 @@
+- name: Install all required dependencies
+  yum: 
+    name: ['python', 'python-setuptools', 'python-devel', 'python-pip', 'make', 'gcc', 'gcc-c++']
+    state: present

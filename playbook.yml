@@ -1,12 +1,8 @@
   - name: Deploy a web application
     hosts: ansible_targets
     become: true
-    tasks:
-      - name: Install all required dependencies
-        yum: 
-          name: ['python', 'python-setuptools', 'python-devel', 'python-pip', 'make', 'gcc', 'gcc-c++']
-          state: present
-
-      - include: tasks/deploy_db.yml
-      - include: tasks/deploy_web.yml
+    roles:
+      - python
+      - mysql_db
+      - flask_web 
       
