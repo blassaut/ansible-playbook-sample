@@ -7,42 +7,6 @@
           name: ['python', 'python-setuptools', 'python-devel', 'python-pip', 'make', 'gcc', 'gcc-c++']
           state: present
 
-      - name: Install MySQL database
-        yum:
-          name: mysql-community-server
-          state: present
-
-      - name: Start MySQL service
-        service:
-          name: mysqld
-          state: started
-          enabled: yes
-      
-      - name: Create database
-        mysql_db: 
-          name: employee_db 
-          state: present
-
-      - name: Create database users
-        mysql_user:
-          name: db_user
-          password: Passw0rd
-          priv: '*.*:ALL'
-          state: present
-
-      - name: Install Python Flask dependencies
-        pip:
-          name: '{{ item }}'
-          state: present
-          with_items:
-            - flask
-            - flask-mysql
-      
-      - name: Copy source code
-        copy:
-          src: app.py
-          dest: /opt/app.py
-
-      - name: Start Web Server
-        shell: FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+      - include: tasks/deploy_db.yml
+      - include: tasks/deploy_web.yml
       
