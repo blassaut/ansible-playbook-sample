@@ -1,8 +1,13 @@
-  - name: Deploy a web application
-    hosts: ansible_targets
+  - name: Deploy a mysql DB
+    hosts: db_server
     become: true
     roles:
       - python
       - mysql_db
+
+  - name: Deploy a web server
+    hosts: web_server
+    become: true
+    roles:
+      - python
       - flask_web 
-      
